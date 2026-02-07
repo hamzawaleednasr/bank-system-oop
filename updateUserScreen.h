@@ -81,7 +81,7 @@ private:
 		user.phoneNumber = inputValidate::readString();
 
 		cout << "Enter Password: ";
-		user.password = util::encryption(inputValidate::readString());
+		user.password = util::encryption(inputValidate::readString(), 1026);
 
 		user.permissions = readPermissions();
 	}
@@ -95,7 +95,7 @@ private:
 		cout << "\nEmail: " << u.email;
 		cout << "\nPhone Number: " << u.phoneNumber;
 		cout << "\nUsername: " << u.username;
-		cout << "\nPasswords: " << util::decryption(u.password);
+		cout << "\nPasswords: " << util::decryption(u.password, 1026);
 		cout << "\nPermissions: " << u.permissions;
 		cout << "\n------------------------------------\n";
 	}

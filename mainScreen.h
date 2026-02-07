@@ -11,18 +11,19 @@
 #include "transactionsScreen.h"
 #include "manageUsersScreen.h"
 #include "loginRegisterScreen.h"
+#include "currencyScreen.h"
 #include "login.h"
 
 class mainScreen : protected screen
 {
 private:
 	enum enMainMenuOptions {
-		list = 1, add, del, update, find, trans, manage_users, registers,  logout
+		list = 1, add, del, update, find, trans, manage_users, registers, currency_exchange, logout
 	};
 
 	static short _readMainMenuOption()
 	{
-		short choice = inputValidate::readIntInRange(1, 9, "\nChoose what do you want to do? [1-9]: ");
+		short choice = inputValidate::readIntInRange(1, 10, "\nChoose what do you want to do? [1-10]: ");
 		return choice;
 	}
 
@@ -71,6 +72,11 @@ private:
 	static void _showLoginRegisterScreen()
 	{
 		loginRegisterScreen::showRegisters();
+	}
+
+	static void _showCurrencyMenuScreen()
+	{
+		currencyScreen::showCurrencyMenu();
 	}
 
 	static void _showLogoutScreen()
@@ -122,6 +128,11 @@ private:
 			_showLoginRegisterScreen();
 			_goBackToMainMenu();
 			break;
+		case enMainMenuOptions::currency_exchange:
+			system("cls");
+			_showCurrencyMenuScreen();
+			_goBackToMainMenu();
+			break;
 		case enMainMenuOptions::logout:
 			system("cls");
 			_showLogoutScreen();
@@ -145,7 +156,8 @@ public:
 		cout << "  [6] Transactions.\n";
 		cout << "  [7] Manage Users.\n";
 		cout << "  [8] Login Register.\n";
-		cout << "  [9] Logout.\n";
+		cout << "  [9] Currency Exchange.\n";
+		cout << "  [10] Logout.\n";
 		cout << "==================================================";
 		_performMainMenuOption((enMainMenuOptions)_readMainMenuOption());
 	}

@@ -102,14 +102,14 @@ public:
 	} string lowercase() { lowercase(_value); }
 
 
-	string uppercase(string& word)
+	static string uppercase(string text)
 	{
-		for (int letter = 0; letter < word.length(); letter++)
+		for (char& c : text)
 		{
-			if (word[letter] >= 97 && word[letter] <= 122)
-				word[letter] -= 32;
+			c = toupper(c);
 		}
-	} string uppercase() { uppercase(_value); }
+		return text;
+	} string uppercase() { return uppercase(_value); }
 
 
 	char invertCharCase(char letter)
